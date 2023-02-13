@@ -24,4 +24,14 @@ export default async function handler(req, res) {
     res.status(202).json(result);
     client.close();
   }
+  if (req.method === "PUT") {
+    const id = req.body._id;
+    const object = req.body.object;
+    const result = await client
+      .db()
+      .collection("users")
+      .replaceOne({ _id: new ObjectId(id) }, { ...object });
+    res.status(200).json(result);
+    client.close();
+  }
 }

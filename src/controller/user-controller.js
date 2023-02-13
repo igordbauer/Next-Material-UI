@@ -38,3 +38,21 @@ export const deleteUser = async (id) => {
     return response;
   });
 };
+
+export const updateUser = async (id, object) => {
+  await fetch("/api/users", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      _id: id,
+      object: object,
+    }),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error("Erro na requisição");
+    }
+    return response;
+  });
+};

@@ -2,8 +2,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Paper, Box, CardHeader, Typography } from "@mui/material";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+import UpdateRoundedIcon from "@mui/icons-material/UpdateRounded";
 import { IconButton } from "@mui/material";
-import { getAllUsers, deleteUser } from "../../controller/user-controller";
+import {
+  getAllUsers,
+  deleteUser,
+  updateUser,
+} from "../../controller/user-controller";
 import CustomDialog from "../shared/UI/CustomDialog";
 import UpdateDialog from "../shared/UI/UpdateDialog";
 
@@ -21,11 +26,9 @@ const UserList = () => {
     setId(id);
     setOpenUpdate(true);
   };
-  const handleCloseUpdate = () => {
-    setOpenUpdate(null);
-  };
+  const handleCloseUpdate = () => setOpenUpdate(null);
 
-  useEffect(async () => {
+  useEffect(() => {
     const load = async () => {
       const data = await getAllUsers();
       setUsers(data);
@@ -39,9 +42,12 @@ const UserList = () => {
     handleCloseDelete();
     document.location.reload(true);
   };
-  const handleUpdateUser = async (e) => {
-    e.preventDefault();
-    console.log("update");
+  const handleUpdateUser = async (obj) => {
+    const { name, email } = obj.inputs;
+    const newObj = { name: name.value, email: email.value };
+    await updateUser(id, newObj);
+    handleCloseUpdate();
+    document.location.reload(true);
   };
   return (
     <>
@@ -69,14 +75,15 @@ const UserList = () => {
                   >
                     <CardHeader
                       title={u.name}
+                      sx={{}}
                       subheader={u.email}
                       action={
                         <>
+                          <IconButton onClick={() => handleOpenUpdate(u._id)}>
+                            <UpdateRoundedIcon color="primary" />
+                          </IconButton>
                           <IconButton onClick={() => handleOpenDelete(u._id)}>
                             <ClearRoundedIcon color="error" />
-                          </IconButton>
-                          <IconButton onClick={() => handleOpenUpdate(u._id)}>
-                            <ClearRoundedIcon />
                           </IconButton>
                         </>
                       }

@@ -53,18 +53,23 @@ const UpdateDialog = ({
     }
   }, [id, users, identifiedUser, open, setFormData]);
 
-  const onCloseDialog = useCallback(() => {
-    setIsLoading(true);
+  const onCloseDialog = useCallback((e) => {
+    e.preventDefault();
     setFormData(data, true);
-    setIsLoading(false);
     onClose();
   }, []);
-
+  const onConfirmDialog = useCallback(
+    (e) => {
+      e.preventDefault();
+      onConfirm(formsState);
+    },
+    [formsState]
+  );
   return (
-    <Dialog sx={{ borderRadius: "20px" }} onClose={onClose} open={open}>
+    <Dialog sx={{ borderRadius: "20px" }} onClose={onCloseDialog} open={open}>
       {!isLoading && (
         <Paper sx={{ p: 2 }}>
-          <form onSubmit={onConfirm}>
+          <form onSubmit={onConfirmDialog}>
             <>
               <CardHeader title="Update User" />
               <CardContent>
@@ -101,10 +106,10 @@ const UpdateDialog = ({
               >
                 {onConfirm && (
                   <Button
+                    disabled={!formsState.isValid}
                     variant="contained"
                     type="submit"
                     color="error"
-                    onClick={onConfirm}
                   >
                     Update
                   </Button>
