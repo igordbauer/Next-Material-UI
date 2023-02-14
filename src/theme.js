@@ -1,8 +1,8 @@
-import { Roboto, Electrolize } from "@next/font/google";
+import { Roboto } from "@next/font/google";
 import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 
-export const roboto = Electrolize({
+export const roboto = Roboto({
   weight: ["400"],
   subsets: ["latin"],
   display: "swap",
@@ -11,6 +11,13 @@ export const roboto = Electrolize({
 
 // Create a theme instance.
 export const theme = createTheme({
+  components: {
+    MuiPaperBase: {
+      defaultProps: {
+        backgroundColor: "#fff",
+      },
+    },
+  },
   palette: {
     primary: {
       main: "#1976d2",
@@ -20,6 +27,10 @@ export const theme = createTheme({
     },
     error: {
       main: red.A400,
+    },
+    background: {
+      default: "#fff",
+      paper: "#fff",
     },
   },
   typography: {

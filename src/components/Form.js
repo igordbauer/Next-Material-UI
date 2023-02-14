@@ -47,6 +47,7 @@ const Form = () => {
           p: 2,
           mb: 2,
           minWidth: "275px",
+          backgroundColor: "#fff",
         }}
       >
         <form onSubmit={submitHandler}>
