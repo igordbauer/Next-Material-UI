@@ -11,6 +11,17 @@
   },
   "plugins": ["react"],
   "rules": {
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/display-name": "off",
+    "import/extensions": "off",
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^React$"
+      }
+    ]
   }
 }

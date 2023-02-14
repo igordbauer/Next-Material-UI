@@ -1,7 +1,9 @@
 import { connectToDatabase } from "../../src/util/dbAcess";
 import { ObjectId } from "mongodb";
+
 export default async function handler(req, res) {
   const client = await connectToDatabase();
+
   if (req.method === "POST") {
     const data = req.body;
     const result = await client.db().collection("users").insertOne(data);
