@@ -1,5 +1,6 @@
 import React from "react";
 import { Drawer, Box, Avatar, Button } from "@mui/material";
+import Link from "next/link";
 
 const CustomDrawer = ({ openDrawer, handleClose }) => {
   return (
@@ -38,10 +39,22 @@ const CustomDrawer = ({ openDrawer, handleClose }) => {
             alignItems: "center",
           }}
         >
-          <Button variant="contained">My profile</Button>
-          <Button variant="contained">Settings</Button>
-          <Button variant="contained">About</Button>
-          <Button variant="contained">Contact</Button>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            LinkComponent={Link}
+            href="/notifications"
+          >
+            Notifications
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            LinkComponent={Link}
+            href="/settings"
+          >
+            Settings
+          </Button>
         </Box>
       </Box>
     </Drawer>

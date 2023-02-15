@@ -3,29 +3,38 @@ import { AppBar, Box, Badge, Avatar, Toolbar, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-const CustomAppbar = ({ handleOpen }) => {
+import Link from "next/link";
+
+const CustomAppbar = ({ handleOpen, desktop }) => {
   return (
     <AppBar position="fixed">
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        <IconButton onClick={handleOpen}>
-          <MenuIcon />
-        </IconButton>
+      <Toolbar sx={{ justifyContent: desktop ? "flex-end" : "space-between" }}>
+        {!desktop && (
+          <IconButton onClick={handleOpen}>
+            <MenuIcon />
+          </IconButton>
+        )}
         <Box
           gap={1}
           sx={{
             display: "flex",
+            mr: 1,
           }}
         >
-          <IconButton>
-            <Badge color="error" badgeContent={4}>
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton>
-            <SettingsIcon />
-          </IconButton>
-          <Avatar src="/public/logoooo.jpg" />
+          {desktop && (
+            <>
+              <IconButton LinkComponent={Link} href="/notifications">
+                <Badge color="error" badgeContent={4}>
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton LinkComponent={Link} href="/settings">
+                <SettingsIcon />
+              </IconButton>
+            </>
+          )}
         </Box>
+        <Avatar src="/public/logoooo.jpg" />
       </Toolbar>
     </AppBar>
   );

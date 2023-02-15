@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material";
 import theme from "../src/theme";
 import CustomDrawer from "../src/components/Navbar/CustomDrawer";
 import CustomAppbar from "../src/components/Navbar/CustomAppbar";
+import { useMediaQuery } from "@mui/material";
 
 export default function MyApp({ Component, pageProps }) {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -11,13 +12,15 @@ export default function MyApp({ Component, pageProps }) {
   const handleOpen = () => setOpenDrawer(true);
   const handleClose = () => setOpenDrawer(false);
 
+  const desktop = useMediaQuery("(min-width:600px)");
+
   return (
     <>
       <ThemeProvider theme={theme}>
-        <CustomAppbar {...{ handleOpen }} />
-        <CustomDrawer {...{ handleClose, openDrawer }} />
+        <CustomAppbar {...{ handleOpen, desktop }} />
+        {!desktop && <CustomDrawer {...{ handleClose, openDrawer }} />}
         <Container maxWidth="md" sx={{ mt: 15 }}>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </Container>
       </ThemeProvider>
     </>
