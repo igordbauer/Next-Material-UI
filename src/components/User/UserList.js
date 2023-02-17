@@ -17,6 +17,7 @@ const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [openDelete, setOpenDelete] = useState(null);
   const [openUpdate, setOpenUpdate] = useState(null);
+
   const [id, setId] = useState(null);
 
   const handleOpenDelete = (id) => setOpenDelete(id);
