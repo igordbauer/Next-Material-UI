@@ -17,7 +17,7 @@ const initialInputValues = {
     value: "",
     isValid: false,
   },
-  email: {
+  description: {
     value: "",
     isValid: false,
   },
@@ -47,6 +47,7 @@ const Form = () => {
           p: 2,
           mb: 2,
           minWidth: "275px",
+          width: 1,
           backgroundColor: "#fff",
         }}
       >
@@ -66,15 +67,17 @@ const Form = () => {
               onChangeInput={inputHandler}
             />
             <CustomInput
-              inputId="email"
-              type="e-mail"
-              initialValue={formsState.inputs.email.value}
+              inputId="description"
+              type="text"
+              multiline
+              initialValue={formsState.inputs.description.value}
               initialValidity={false}
-              label="E-mail"
-              placeholder="Please enter your email"
-              validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
+              label="Description"
+              placeholder="Please enter your task description"
+              validators={[VALIDATOR_REQUIRE()]}
               sx={{ width: 1, my: 2 }}
-              errorText="Please enter a valid email"
+              rows={5}
+              errorText="Please enter a task description"
               onChangeInput={inputHandler}
             />
           </CardContent>

@@ -19,7 +19,7 @@ export default function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <CustomAppbar {...{ handleOpen, desktop }} />
         {!desktop && <CustomDrawer {...{ handleClose, openDrawer }} />}
-        <Container maxWidth="md" sx={{ mt: 15 }}>
+        <Container maxWidth="xg" sx={{ mt: 10 }}>
           <Component {...pageProps} />
         </Container>
       </ThemeProvider>

@@ -34,7 +34,7 @@ const CustomAppbar = ({ handleOpen, desktop }) => {
             </>
           )}
         </Box>
-        <Avatar src="/public/logoooo.jpg" />
+        <Avatar />
       </Toolbar>
     </AppBar>
   );
